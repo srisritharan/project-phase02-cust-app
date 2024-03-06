@@ -14,7 +14,9 @@ export function App(params) {
   // let formObject = customers[0];
   const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
+
   let mode = formObject.id >= 0 ? "Update" : "Add";
+
   useEffect(() => {
     getCustomers();
   }, []);
@@ -35,6 +37,11 @@ export function App(params) {
 
   const handleInputChange = function (event) {
     log("in handleInputChange()");
+    const name = event.target.name;
+    const value = event.target.value;
+    let newFormObject = { ...formObject };
+    newFormObject[name] = value;
+    setFormObject(newFormObject);
   };
 
   let onCancelClick = function () {
@@ -96,6 +103,7 @@ export function App(params) {
                   <input
                     type="text"
                     name="name"
+                    onChange={(e) => handleInputChange(e)}
                     value={formObject.name}
                     placeholder="Customer Name"
                     required
@@ -108,6 +116,7 @@ export function App(params) {
                   <input
                     type="email"
                     name="email"
+                    onChange={(e) => handleInputChange(e)}
                     value={formObject.email}
                     placeholder="name@company.com"
                   />
@@ -119,6 +128,7 @@ export function App(params) {
                   <input
                     type="text"
                     name="password"
+                    onChange={(e) => handleInputChange(e)}
                     value={formObject.password}
                     placeholder="password"
                   />
