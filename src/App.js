@@ -1,7 +1,7 @@
 /** @format */
 
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import customers from "./memdb.js";
 import { getAll, post, put, deleteById } from "./memdb.js";
 
@@ -15,9 +15,13 @@ export function App(params) {
   const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
   let mode = formObject.id >= 0 ? "Update" : "Add";
+  useEffect(() => {
+    getCustomers();
+  }, []);
 
   const getCustomers = function () {
     log("in getCustomers()");
+    setCustomers(getAll());
   };
 
   const handleListClick = function (item) {
