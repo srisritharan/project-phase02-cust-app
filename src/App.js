@@ -33,6 +33,7 @@ export function App(params) {
 
   let onCancelClick = function () {
     log("in onCancelClick()");
+    setFormObject(blankCustomer);
   };
 
   let onDeleteClick = function () {
@@ -117,7 +118,11 @@ export function App(params) {
                 <td colSpan="2">
                   <input type="button" value="Delete" onClick={onDeleteClick} />
                   <input type="button" value="Save" onClick={onSaveClick} />
-                  <input type="button" value="Cancel" onClick={onCancelClick} />
+                  <input
+                    type="button"
+                    value="Cancel"
+                    onClick={() => onCancelClick()}
+                  />
                 </td>
               </tr>
             </tbody>
